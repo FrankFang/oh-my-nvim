@@ -1,5 +1,6 @@
 local m = {
-  "Pocco81/auto-save.nvim",
+  'windwp/nvim-ts-autotag',
   config = true
 }
+
 return {}

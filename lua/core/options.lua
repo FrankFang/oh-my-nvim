@@ -1,4 +1,4 @@
-local opt = vim.opt
+local opt, cmd = vim.opt, vim.cmd
 local cache_dir = vim.fn.stdpath('cache')
 local path_join = require('core.helper').path_join
 
@@ -33,13 +33,14 @@ end
 opt.completeopt = 'menu,menuone,noselect'
 opt.showmode = false
 opt.shortmess = 'aoOTIcF'
-opt.scrolloff = 2
-opt.sidescrolloff = 5
+opt.scrolloff = 8
+opt.sidescrolloff = 8
 opt.ruler = false
-opt.showtabline = 0
+opt.showtabline = 2
 opt.winwidth = 30
 opt.pumheight = 15
 opt.showcmd = false
+opt.cursorline = true
 
 opt.cmdheight = 0
 opt.laststatus = 2
@@ -63,7 +64,7 @@ opt.showbreak = '↳ '
 opt.wrap = false
 
 opt.foldlevelstart = 99
-opt.foldmethod = 'marker'
+opt.foldmethod = 'manual'
 
 opt.number = true
 opt.signcolumn = 'yes'
@@ -71,7 +72,10 @@ opt.spelloptions = 'camel'
 
 -- ruler
 opt.textwidth = 120
---opt.colorcolumn = '120'
+opt.colorcolumn = '120'
 
 -- mouse
 opt.mouse = 'c'
+
+-- view
+
