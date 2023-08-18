@@ -1,7 +1,6 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  config = true,
   init = function()
     vim.o.timeout = true
     vim.o.timeoutlen = 300
@@ -9,9 +8,31 @@ return {
   config = function()
     local wk = require("which-key")
     wk.register({
+      g = {
+        name = '+go',
+        f = { "<Cmd>lua vim.lsp.buf.format()<CR>", "Format" },
+        j = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Quick Fix" },
+        d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+        D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
+        i = { "<Cmd>lua vim.lsp.buf.implementation()<CR>", "implementation" },
+        r = { "<Cmd>lua vim.lsp.buf.references()<CR>", "References" },
+        s = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature" },
+      },
+      K = {
+        name = '+Hover',
+        K = { '<Cmd>lua vim.lsp.buf.hover()<CR>', 'LSP info' },
+      },
       ["<tab>"] = { '<Cmd>BufferNext<CR>', 'BufferNext' },
       ["<s-tab>"] = { '<Cmd>BufferPrevious<CR>', 'BufferPrev' },
       ["<leader>"] = {
+        k = {
+          name = '+panel',
+          ['1'] = { "<Cmd>NvimTreeToggle<CR>", "Tree" }
+        },
+        l = {
+          l = { "<Cmd>Prettier<CR>", "Prettier" },
+          k = { "<Cmd>lua vim.lsp.buf.format()<CR>", "Foramt via LSP" }
+        },
         z = {
           t = { "zfit", "Fold Tag" },
           d = { "zfi{", "Fold {}" },
@@ -20,25 +41,21 @@ return {
           b = { "<Cmd>BufferClose<CR>", "Close Current Buffer" },
         },
         f = {
-          p = { "<esc>:echo expand('%:p')<cr>", "Path" },
+          p = { "<Cmd>echo expand('%:p')<cr>", "Path" },
         },
         j = {
-          j = { "<esc>:lua vim.lsp.buf.code_action()<cr>", "Fix" }
+          j = { "<Cmd>lua vim.lsp.buf.code_action()<cr>", "Fix" }
         },
         r = {
           name = '+reload',
-          r = { "<esc>:source $MYVIMRC<cr>", "Reload Config" }
+          r = { "<Cmd>source $MYVIMRC<cr>", "Reload Config" }
         },
         t = {
           name = '+tab',
-          t = { "<esc>:tabnext<cr>", "Next Tab" },
-          p = { "<esc>:tabprevious<cr>", "Previous Tab" },
+          t = { "<Cmd>tabnext<cr>", "Next Tab" },
+          p = { "<Cmd>tabprevious<cr>", "Previous Tab" },
         }
       },
-      g = {
-        name = '+go',
-        q = { "Format" }
-      }
     }, { mode = 'n' })
   end
 }
