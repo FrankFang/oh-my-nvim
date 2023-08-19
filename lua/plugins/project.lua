@@ -1,4 +1,4 @@
-local m = {
+return {
   "ahmedkhalf/project.nvim",
   config = function()
     require("project_nvim").setup {
@@ -7,4 +7,3 @@ local m = {
   end
 }
 
-return m

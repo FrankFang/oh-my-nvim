@@ -41,6 +41,13 @@ return {
           b = { "<Cmd>BufferClose<CR>", "Close Current Buffer" },
         },
         f = {
+          name = "+file",
+          f = { "<cmd>Telescope find_files<cr>", "Find File" },
+          g = { "<cmd>Telescope live_grep<cr>", "Grep" },
+          b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+          h = { "<cmd>Telescope help_tags<cr>", "Help" },
+          r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+          n = { "<cmd>enew<cr>", "New File" },
           p = { "<Cmd>echo expand('%:p')<cr>", "Path" },
         },
         j = {
