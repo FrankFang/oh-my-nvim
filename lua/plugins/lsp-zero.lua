@@ -16,6 +16,7 @@ return {
   },
   config = function()
     local lsp = require('lsp-zero').preset({})
+    local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
     lsp.on_attach(function(client, bufnr)
       -- see :help lsp-zero-keybindings
@@ -35,9 +36,6 @@ return {
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
     lsp.setup()
 
-    -- from vscode
-    require("luasnip.loaders.from_vscode").lazy_load()
-
     -- Make sure you setup `cmp` after lsp-zero
 
     local cmp = require('cmp')
@@ -46,6 +44,7 @@ return {
       preselect = 'item',
       sources = {
         { name = 'copilot' },
+        { name = 'luasnip' },
         { name = 'nvim_lsp' },
       },
       completion = {
@@ -100,19 +99,21 @@ return {
     prettier.setup({
       bin = 'prettierd', -- or `'prettierd'` (v0.23.3+)
       filetypes = {
-        "css",
-        "graphql",
-        "html",
-        "javascript",
-        "javascriptreact",
-        "json",
-        "less",
-        "markdown",
-        "scss",
-        "typescript",
-        "typescriptreact",
-        "yaml",
+        "css", "graphql", "html", "javascript", "javascriptreact", "json", "less", "markdown", "scss",
+        "typescript", "typescriptreact", "yaml",
       },
+    })
+
+    -- typescript
+    require('lspconfig').tsserver.setup({
+      capabilities = lsp_capabilities,
+      init_options = {
+        preferences = {
+          importModuleSpecifierPreference = 'non-relative',
+          importModuleSpecifierEnding = 'minimal',
+        },
+      }
+
     })
   end
 }
