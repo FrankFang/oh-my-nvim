@@ -3,7 +3,6 @@ return {
   priority = 1000,
   name = "gruvbox",
   init = function()
-    vim.o.background = 'light'
   end,
   config = function()
     require("gruvbox").setup {

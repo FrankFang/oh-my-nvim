@@ -9,10 +9,14 @@ else
   require 'core.plugins'
 
   -- custom
-  vim.api.nvim_set_hl(0, 'CursorLine', { underline = true })
-  vim.cmd.colorscheme "gruvbox"
+  --vim.api.nvim_set_hl(0, 'CursorLine', { underline = true })
+  --  highlight CursorLine guibg=#efccff
+  --  highlight CursorLineNr guibg=#efccff
   vim.cmd([[
-    highlight CursorLine guibg=#ffb0b3
-    highlight CursorLineNr guibg=#ffb0b3
+    autocmd BufEnter  zsh        set mouse=a
+    autocmd BufLeave  zsh        set mouse=c
   ]])
+  vim.opt.termguicolors = true
+  vim.o.background = 'dark'
+  vim.cmd.colorscheme 'monokai'
 end

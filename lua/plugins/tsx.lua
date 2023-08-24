@@ -5,4 +5,4 @@ local m = {
     'HerringtonDarkholme/yats.vim',
   },
 }
-return m
+return {}

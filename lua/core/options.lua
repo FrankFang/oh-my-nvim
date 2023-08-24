@@ -6,7 +6,8 @@ opt.termguicolors = true
 opt.hidden = true
 opt.magic = true
 opt.virtualedit = 'block'
-opt.clipboard = 'unnamedplus'
+--opt.clipboard = 'unnamedplus'
+opt.clipboard:append { 'unnamed', 'unnamedplus' }
 opt.wildignorecase = true
 opt.swapfile = false
 opt.directory = path_join(cache_dir, 'swap/')
@@ -72,7 +73,7 @@ opt.spelloptions = 'camel'
 
 -- ruler
 opt.textwidth = 120
-opt.colorcolumn = '120'
+--opt.colorcolumn = '120'
 
 -- mouse
 opt.mouse = 'c'
