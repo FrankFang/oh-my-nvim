@@ -57,6 +57,12 @@ return {
           name = '+reload',
           r = { "<Cmd>source $MYVIMRC<cr>", "Reload Config" }
         },
+        s = {
+          name = '+ search or session',
+          s = { '<cmd>lua require("spectre").toggle()<CR>', 'Search in Folder' },
+          l = { '<cmd>silent! loadview 1<CR>', 'Load View 1'},
+          k = { '<cmd>mkview 1<CR>', 'Make View 1'},
+        },
         t = {
           name = '+tab',
           t = { "<Cmd>tabnext<cr>", "Next Tab" },
