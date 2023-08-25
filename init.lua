@@ -1,7 +1,10 @@
 local g, fn = vim.g, vim.fn
+
 if g.vscode then
   -- VSCode extension
-  vim.cmd [[source $HOME/.config/nvim/vscode/settings.vim]]
+  vim.cmd [[
+    source $HOME/.config/nvim/vscode/settings.vim
+  ]]
 else
   -- ordinary Neovim
   require 'core.prepare'
@@ -12,10 +15,6 @@ else
   --vim.api.nvim_set_hl(0, 'CursorLine', { underline = true })
   --  highlight CursorLine guibg=#efccff
   --  highlight CursorLineNr guibg=#efccff
-  vim.cmd([[
-    autocmd BufEnter  zsh        set mouse=a
-    autocmd BufLeave  zsh        set mouse=c
-  ]])
   vim.opt.termguicolors = true
   vim.o.background = 'dark'
   vim.cmd.colorscheme 'monokai'

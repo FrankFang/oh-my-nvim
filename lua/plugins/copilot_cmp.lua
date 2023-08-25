@@ -1,4 +1,4 @@
-return {
+local m = {
   "zbirenbaum/copilot-cmp",
   after = { "copilot.lua" },
   event = { "InsertEnter", "LspAttach" },
@@ -7,3 +7,5 @@ return {
     require("copilot_cmp").setup()
   end
 }
+
+return m

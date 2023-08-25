@@ -1,6 +1,19 @@
-local opt, cmd = vim.opt, vim.cmd
+local opt, cmd, g, keymap = vim.opt, vim.cmd, vim.g, vim.keymap
 local cache_dir = vim.fn.stdpath('cache')
 local path_join = require('core.helper').path_join
+
+if g.neovide then
+  vim.o.guifont = "JetBrainsMono Nerd Font:h12"
+  opt.linespace = 6
+  g.neovide_input_macos_alt_is_meta = true
+  -- copy & paste
+  keymap.set('n', '<D-s>', ':w<CR>')        -- Save
+  keymap.set('v', '<D-c>', '"+y')           -- Copy
+  keymap.set('n', '<D-v>', '"+P')           -- Paste normal mode
+  keymap.set('v', '<D-v>', '"+P')           -- Paste visual mode
+  keymap.set('c', '<D-v>', '<C-R>+')        -- Paste command mode
+  keymap.set('i', '<D-v>', '<ESC>l"+Pli')   -- Paste insert mode
+end
 
 opt.termguicolors = true
 opt.hidden = true
@@ -76,7 +89,11 @@ opt.textwidth = 120
 --opt.colorcolumn = '120'
 
 -- mouse
-opt.mouse = 'c'
+opt.mouse = 'a'
+-- cmd([[
+--   autocmd BufEnter zsh set mouse=a
+--   autocmd BufLeave zsh set mouse=a
+-- ]])
 
 -- view
 

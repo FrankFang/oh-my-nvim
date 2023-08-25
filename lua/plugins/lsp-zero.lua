@@ -43,9 +43,12 @@ return {
     cmp.setup({
       preselect = 'item',
       sources = {
-        { name = 'copilot' },
-        { name = 'luasnip' },
-        { name = 'nvim_lsp' },
+        -- Copilot Source
+        { name = "copilot",  group_index = 2 },
+        -- Other Sources
+        { name = "nvim_lsp", group_index = 2 },
+        { name = "path",     group_index = 2 },
+        { name = "luasnip",  group_index = 2 },
       },
       completion = {
         completeopt = 'menu,menuone,noinsert'

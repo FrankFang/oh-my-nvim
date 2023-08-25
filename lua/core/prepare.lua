@@ -1,4 +1,4 @@
-local g, fn = vim.g, vim.fn
+local g, fn, keymap = vim.g, vim.fn, vim.keymap
 local path_join = require("core.helper").path_join
 
 local cache_dir = vim.fn.stdpath('cache')
@@ -28,3 +28,4 @@ g.loaded_netrwPlugin = 1
 g.encoding = 'UTF-8'
 g.fileencoding = 'utf-8'
 g.mapleader = ' '
+

@@ -43,7 +43,7 @@ return {
         cvs = false,
         ["."] = false,
       },
-      copilot_node_command = 'node', -- Node.js version must be > 16.x
+      copilot_node_command = '/Users/mac/Library/Caches/fnm_multishells/4311_1692849923727/bin/node', -- Node.js version must be > 16.x
       server_opts_overrides = {},
     })
   end,
