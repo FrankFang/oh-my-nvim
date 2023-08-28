@@ -67,6 +67,9 @@ return {
           name = '+tab',
           t = { "<Cmd>tabnext<cr>", "Next Tab" },
           p = { "<Cmd>tabprevious<cr>", "Previous Tab" },
+        },
+        p = {
+          "<Cmd>Telescope commander<cr>", "Commander Center"
         }
       },
     }, { mode = 'n' })

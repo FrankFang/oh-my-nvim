@@ -17,6 +17,41 @@ return {
   config = function()
     local lsp = require('lsp-zero').preset({})
     local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+    lsp.preset('recommended')
+    lsp.ensure_installed({
+      'tsserver',
+      'eslint',
+    })
+
+    local function filter(arr, fn)
+      if type(arr) ~= "table" then
+        return arr
+      end
+
+      local filtered = {}
+      for k, v in pairs(arr) do
+        if fn(v, k, arr) then
+          table.insert(filtered, v)
+        end
+      end
+
+      return filtered
+    end
+
+    local function filterReactDTS(value)
+      return string.match(value.filename, 'react/index.d.ts') == nil
+    end
+
+    local function on_list(options)
+      local items = options.items
+      if #items > 1 then
+        items = filter(items, filterReactDTS)
+      end
+
+      vim.fn.setqflist({}, ' ', { title = options.title, items = items, context = options.context })
+      vim.api.nvim_command('cfirst') -- or maybe you want 'copen' instead of 'cfirst'
+    end
+
 
     lsp.on_attach(function(client, bufnr)
       -- see :help lsp-zero-keybindings
@@ -28,8 +63,14 @@ return {
       local opts = { buffer = bufnr }
 
       vim.keymap.set({ 'n', 'x' }, 'gq', function()
-        vim.lsp.buf.format({ async = false, timeout_ms = 10000 })
+        vim.lsp.buf.format({ async = false, timeout_ms = 3000 })
       end, opts)
+    end)
+    -- https://www.reddit.com/r/neovim/comments/107g8lg/how_to_ignore_node_modules_when_using/j3mieqc/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+    lsp.on_attach(function(client, bufnr)
+      local opts = { buffer = bufnr, remap = false }
+      local bufopts = { noremap = true, silent = true, buffer = bufnr }
+      vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition { on_list = on_list } end, bufopts)
     end)
 
     -- (Optional) Configure lua language server for neovim
@@ -108,12 +149,55 @@ return {
     })
 
     -- typescript
+    local function rename_file()
+      local source_file, target_file
+
+      vim.ui.input({
+          prompt = "Source : ",
+          completion = "file",
+          default = vim.api.nvim_buf_get_name(0)
+        },
+        function(input)
+          source_file = input
+        end
+      )
+      vim.ui.input({
+          prompt = "Target : ",
+          completion = "file",
+          default = source_file
+        },
+        function(input)
+          target_file = input
+        end
+      )
+
+      local params = {
+        command = "_typescript.applyRenameFile",
+        arguments = {
+          {
+            sourceUri = source_file,
+            targetUri = target_file,
+          },
+        },
+        title = ""
+      }
+
+      vim.lsp.util.rename(source_file, target_file)
+      vim.lsp.buf.execute_command(params)
+    end
+
     require('lspconfig').tsserver.setup({
       capabilities = lsp_capabilities,
       init_options = {
         preferences = {
           importModuleSpecifierPreference = 'non-relative',
           importModuleSpecifierEnding = 'minimal',
+        },
+      },
+      commands = {
+        RenameFile = {
+          rename_file,
+          description = "Rename File"
         },
       }
 
