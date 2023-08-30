@@ -31,7 +31,8 @@ return {
         },
         l = {
           l = { "<Cmd>Prettier<CR>", "Prettier" },
-          k = { "<Cmd>lua vim.lsp.buf.format()<CR>", "Foramt via LSP" }
+          k = { "<Cmd>lua vim.lsp.buf.format()<CR>", "Foramt via LSP" },
+          n = { "<Cmd>nohl<CR>", "No Highlight" },
         },
         z = {
           t = { "zfit", "Fold Tag" },
@@ -39,6 +40,7 @@ return {
         },
         b = {
           b = { "<Cmd>BufferClose<CR>", "Close Current Buffer" },
+          k = { "<Cmd>BufferCloseAllButCurrentOrPinned<CR>", "Close The Other Buffers" },
         },
         f = {
           name = "+file",
@@ -58,10 +60,11 @@ return {
           r = { "<Cmd>source $MYVIMRC<cr>", "Reload Config" }
         },
         s = {
-          name = '+ search or session',
+          name = '+search|session|save',
           s = { '<cmd>lua require("spectre").toggle()<CR>', 'Search in Folder' },
-          l = { '<cmd>silent! loadview 1<CR>', 'Load View 1'},
-          k = { '<cmd>mkview 1<CR>', 'Make View 1'},
+          l = { '<cmd>silent! loadview 1<CR>', 'Load View 1' },
+          k = { '<cmd>mkview 1<CR>', 'Make View 1' },
+          t = { '<cmd>ASToggle<CR>', 'Auto Save' }
         },
         t = {
           name = '+tab',
