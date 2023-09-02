@@ -6,4 +6,4 @@ local m = {
   end
 }
 
-return m
+return {}
