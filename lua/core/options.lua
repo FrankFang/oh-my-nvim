@@ -19,8 +19,7 @@ opt.termguicolors = true
 opt.hidden = true
 opt.magic = true
 opt.virtualedit = 'block'
---opt.clipboard = 'unnamedplus'
-opt.clipboard:append { 'unnamed', 'unnamedplus' }
+-- opt.clipboard:append { 'unnamed' }
 opt.wildignorecase = true
 opt.swapfile = false
 opt.directory = path_join(cache_dir, 'swap/')

@@ -11,12 +11,14 @@ return {
       g = {
         name = '+go',
         f = { "<Cmd>lua vim.lsp.buf.format()<CR>", "Format" },
-        j = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Quick Fix" },
-        d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
-        D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
-        i = { "<Cmd>lua vim.lsp.buf.implementation()<CR>", "implementation" },
-        r = { "<Cmd>lua vim.lsp.buf.references()<CR>", "References" },
-        s = { "<Cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature" },
+        -- j = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Quick Fix" },
+        j = { "<Cmd>Lspsaga code_action<CR>", "Quick Fix" },
+        p = { "<Cmd>Lspsaga peek_definition<CR>", "Definition" },
+        --D = { "<Cmd>Lspsaga goto_definition<CR>", "Go To Definition" },
+        --i = { "<Cmd>lua vim.lsp.buf.implementation()<CR>", "implementation" },
+        --n = { "<Cmd>Lspsaga diagnostic_jump_next<CR>", "Jump Next" },
+        --N = { "<Cmd>Lspsaga diagnostic_jump_prev<CR>", "Jump Prev" },
+        ['*'] = { "gd[{V%::s/<C-R>///gc<left><left><left>", "Rename All" },
       },
       K = {
         name = '+Hover',
@@ -25,6 +27,9 @@ return {
       ["<tab>"] = { '<Cmd>BufferNext<CR>', 'BufferNext' },
       ["<s-tab>"] = { '<Cmd>BufferPrevious<CR>', 'BufferPrev' },
       ["<leader>"] = {
+        d = {
+          "\"_d", "Delete into null"
+        },
         k = {
           name = '+panel',
           ['1'] = { "<Cmd>NvimTreeToggle<CR>", "Tree" }

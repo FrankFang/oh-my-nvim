@@ -3,8 +3,9 @@ local m = {
   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   opts = {},
   config = function()
-    require("typescript-tools").setup { }
+    require("typescript-tools").setup {
+    }
   end
 }
 
-return m
+return {}

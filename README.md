@@ -1,5 +1,6 @@
 # oh-my-nvim
 
+
 ## Key bindings
 
 | key                                           | function         | mode   | dependencies   |

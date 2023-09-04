@@ -24,5 +24,20 @@ else
     hi MatchParen guifg=none guibg=tomato
   ]])
 
-  vim.api.nvim_set_keymap('i', '<c-s>', '<cmd>lua require("fn").format_and_save()<cr>', { noremap = true, silent = true })
+  -- Ctrl-S to save all
+  vim.api.nvim_set_keymap('i', '<c-s>', '<c-o><cmd>wa<cr>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', '<c-s>', '<cmd>wa<cr>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('n', 'c*', '*<c-o>cgn', { noremap = true, silent = true })
+
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    desc = "Format before saving",
+    group = vim.api.nvim_create_augroup("Custom", { clear = true }),
+    callback = function()
+      vim.lsp.buf.format({ async = false, timeout_ms = 3000 })
+    end,
+  })
+
+  vim.cmd [[
+    autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+  ]]
 end
