@@ -3,9 +3,9 @@ local m = {
   after = { "copilot.lua" },
   event = { "InsertEnter", "LspAttach" },
   fix_pairs = true,
-  config = function ()
+  config = function()
     require("copilot_cmp").setup()
   end
 }
 
-return m
+return {}

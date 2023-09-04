@@ -8,6 +8,12 @@ return {
   config = function()
     local wk = require("which-key")
     wk.register({
+      ['M-l'] = {
+        require("copilot.suggestion").accept_line(),
+        "copilot"
+      }
+    }, { mode = 'i', noremap = true, slient = true })
+    wk.register({
       g = {
         name = '+go',
         f = { "<Cmd>lua vim.lsp.buf.format()<CR>", "Format" },
