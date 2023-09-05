@@ -1,4 +1,4 @@
-local g, fn = vim.g, vim.fn
+local g, fn, opt, keymap = vim.g, vim.fn, vim.opt, vim.keymap
 
 if g.vscode then
   -- VSCode extension
@@ -10,6 +10,13 @@ else
   require 'core.prepare'
   require 'core.options'
   require 'core.plugins'
+
+  if g.neovide then
+    opt.guifont = "JetBrainsMono Nerd Font:h11"
+    opt.linespace = 8
+    g.neovide_cursor_vfx_mode = "railgun"
+    require 'core.neovide'
+  end
 
   -- custom
   vim.opt.termguicolors = true

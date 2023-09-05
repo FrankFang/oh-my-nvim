@@ -10,7 +10,7 @@ local function path_join(...)
 end
 
 -- Function to execute a command and capture its output
-function exec(command)
+local function exec(command)
   -- Open a pipe to execute the command
   local pipe = io.popen(command)
   -- Read the output from the pipe
@@ -21,7 +21,7 @@ function exec(command)
   return output
 end
 
-function trim(str)
+local function trim(str)
   return str:match("^%s*(.-)%s*$")
 end
 

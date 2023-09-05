@@ -22,7 +22,11 @@ return {
       ["<leader>xq"] = { function() trouble.open("quickfix") end, "Quickfix" },
       ["<leader>xl"] = { function() trouble.open("loclist") end, "Loclist" },
       ["<leader>xc"] = { function() trouble.close() end, "Close Trouble" },
+      ["<f5>"] = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
       ["gR"] = { function() trouble.open("lsp_references") end, "LSP References" },
-    })
+    }, { mode = "n", noremap = true })
+    wk.register({
+      ["<f5>"] = { "<c-o><cmd>TroubleToggle<cr>", "Toggle Trouble" },
+    }, { mode = "i", noremap = true })
   end,
 }

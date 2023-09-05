@@ -43,5 +43,16 @@ return {
     end
 
     -- vim.api.nvim_set_keymap("n", "<F1>", "<Cmd>lua _term_toggle()<CR>", { noremap = true, silent = true })
+    local wk = require("which-key")
+    wk.register({
+      ['<f12>'] = {
+        "<Cmd>lua _term_toggle()<CR>", "Toggle Term"
+      }
+    }, { mode = 'n', noremap = true, slient = true })
+    wk.register({
+      ['<f12>'] = {
+        "<c-o><Cmd>lua _term_toggle()<CR>", "Toggle Term"
+      }
+    }, { mode = 'i', noremap = true, slient = true })
   end
 }

@@ -1,5 +1,8 @@
 local helper = require('core.helper')
 local node_path = helper.trim(helper.exec('which node'))
+if node_path == '' then
+  print('Node.js is not installed')
+end
 return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",

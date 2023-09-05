@@ -23,9 +23,9 @@ end
 
 createdir()
 
+
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 g.encoding = 'UTF-8'
 g.fileencoding = 'utf-8'
 g.mapleader = ' '
-
