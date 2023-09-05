@@ -29,6 +29,9 @@ else
     hi Cursorline guifg=none guibg=DodgerBlue4
     hi Visual guifg=none guibg=DodgerBlue4
     hi MatchParen guifg=none guibg=tomato
+    hi BufferCurrent guibg=DodgerBlue4
+    hi BufferCurrentSign guibg=DodgerBlue4
+    hi BufferCurrentSignRight guibg=DodgerBlue4
   ]])
 
   -- Ctrl-S to save all

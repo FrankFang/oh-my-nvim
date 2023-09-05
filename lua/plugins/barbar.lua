@@ -1,11 +1,25 @@
 return {
   'romgrk/barbar.nvim',
   dependencies = {
-    'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+    'lewis6991/gitsigns.nvim',     -- OPTIONAL: for git status
     'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
   },
-  init = function() 
-    vim.g.barbar_auto_setup = true
+  init = function()
+    vim.g.barbar_auto_setup = false
+
+    require 'barbar'.setup {
+      auto_hide = true,
+      sidebar_filetypes = {
+        -- Use the default values: {event = 'BufWinLeave', text = nil}
+        NvimTree = true,
+      },
+      icons = {
+        filetype = {
+          custom_colors = true,
+          enabled = false
+        }
+      }
+    }
 
     local map = vim.api.nvim_set_keymap
     local opts = { noremap = true, silent = true }
@@ -32,14 +46,6 @@ return {
     -- Close buffer
     map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
     map('n', '<A-w>', '<Cmd>BufferCloseAllButCurrentOrPinned<CR>', opts)
-    -- Wipeout buffer
-    --                 :BufferWipeout
-    -- Close commands
-    --                 :BufferCloseAllButCurrent
-    --                 :BufferCloseAllButPinned
-    --                 :BufferCloseAllButCurrentOrPinned
-    --                 :BufferCloseBuffersLeft
-    --                 :BufferCloseBuffersRight
     -- Magic buffer-picking mode
     map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
   end,

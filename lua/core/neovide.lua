@@ -7,12 +7,13 @@ g.neovide_fullscreen = false
 g.neovide_remember_window_size = true
 
 -- copy & paste
-keymap.set('n', '<D-s>', ':w<CR>')      -- Save
+keymap.set('n', '<D-s>', '<cmd>wa<cr>') -- Save
 keymap.set('v', '<D-c>', '"+y')         -- Copy
 keymap.set('n', '<D-v>', '"+P')         -- Paste normal mode
 keymap.set('v', '<D-v>', '"+P')         -- Paste visual mode
 keymap.set('c', '<D-v>', '<C-R>+')      -- Paste command mode
-keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+keymap.set('i', '<D-v>', '<ESC>"+pa')   -- Paste insert mode
+
 -- ime
 local function set_ime(args)
   if args.event:match("Enter$") then
