@@ -8,12 +8,14 @@ return {
   config = function()
     local wk = require("which-key")
     wk.register({
-      ['M-l'] = {
+      ['m-l'] = {
         require("copilot.suggestion").accept_line(),
         "copilot"
-      }
+      },
+      ["<f5>"] = { "<c-o><cmd>TroubleToggle<bar><cr>", "Toggle Trouble" },
     }, { mode = 'i', noremap = true, slient = true })
     wk.register({
+      ["<f5>"] = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
       g = {
         name = '+go',
         f = { "<Cmd>lua vim.lsp.buf.format()<CR>", "Format" },

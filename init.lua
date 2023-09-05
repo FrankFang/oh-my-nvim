@@ -1,4 +1,4 @@
-local g, fn, opt, keymap = vim.g, vim.fn, vim.opt, vim.keymap
+local g, fn, opt, keymap, cmd = vim.g, vim.fn, vim.opt, vim.keymap, vim.cmd
 
 if g.vscode then
   -- VSCode extension
@@ -19,12 +19,12 @@ else
   end
 
   -- custom
-  vim.opt.termguicolors = true
-  vim.o.background = 'dark'
-  vim.opt.number = false
-  vim.cmd.colorscheme 'sonokai'
+  opt.termguicolors = true
+  opt.background = 'dark'
+  opt.number = false
+  cmd.colorscheme 'sonokai'
   -- https://codeyarns.com/tech/2011-07-29-vim-chart-of-color-names.html#gsc.tab=0
-  vim.cmd([[
+  cmd([[
     hi Cursor guifg=none guibg=CornflowerBlue
     hi Cursorline guifg=none guibg=DodgerBlue4
     hi Visual guifg=none guibg=DodgerBlue4
@@ -36,6 +36,7 @@ else
   vim.api.nvim_set_keymap('n', '<c-s>', '<cmd>wa<cr>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', 'c*', '*<c-o>cgn', { noremap = true, silent = true })
 
+  -- format before saving
   vim.api.nvim_create_autocmd("BufWritePre", {
     desc = "Format before saving",
     group = vim.api.nvim_create_augroup("Custom", { clear = true }),

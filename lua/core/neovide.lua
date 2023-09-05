@@ -4,6 +4,8 @@ g.neovide_confirm_quit = true
 g.neovide_scroll_animation_length = 0.3
 g.neovide_refresh_rate_idle = 5
 g.neovide_fullscreen = false
+g.neovide_remember_window_size = true
+
 -- copy & paste
 keymap.set('n', '<D-s>', ':w<CR>')      -- Save
 keymap.set('v', '<D-c>', '"+y')         -- Copy
