@@ -38,10 +38,10 @@ return {
         d = {
           "\"_d", "Delete into null"
         },
-        k = {
-          name = '+panel',
-          ['1'] = { "<Cmd>NvimTreeToggle<CR>", "Tree" }
-        },
+        -- k = {
+        --   name = '+panel',
+        --   ['1'] = { "<Cmd>NvimTreeToggle<CR>", "Tree" }
+        -- },
         l = {
           l = { "<Cmd>Prettier<CR>", "Prettier" },
           k = { "<Cmd>lua vim.lsp.buf.format()<CR>", "Foramt via LSP" },

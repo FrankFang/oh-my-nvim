@@ -127,7 +127,18 @@ return {
         vim.keymap.set('n', 'X', move_file_to, opts('Move File To'))
       end
     }
+    local wk = require("which-key")
+    local cmd_toggle_tree = "<Cmd>NvimTreeToggle<CR>"
+    wk.register({
+      ['<A-3>'] = {
+        cmd_toggle_tree, "Toggle Tree"
+      },
+      ['<D-3>'] = {
+        cmd_toggle_tree, "Toggle Tree"
+      },
+      ['<leader>'] = {
+        ['3'] = { cmd_toggle_tree, "Toggle Tree" }
+      },
+    }, { mode = 'n', noremap = true, slient = true })
   end,
 }
-
-

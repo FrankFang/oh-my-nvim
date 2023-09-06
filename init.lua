@@ -12,7 +12,7 @@ else
   require 'core.plugins'
 
   if g.neovide then
-    opt.guifont = "JetBrainsMono Nerd Font:h11"
+    opt.guifont = "JetBrainsMono Nerd Font:h16"
     opt.linespace = 8
     g.neovide_cursor_vfx_mode = "railgun"
     require 'core.neovide'
@@ -23,14 +23,21 @@ else
   opt.background = 'dark'
   opt.number = false
   cmd.colorscheme 'sonokai'
+  -- cmd.colorscheme 'tokyonight'
+  -- cmd.colorscheme 'kanagawa'
+  -- cmd.colorscheme 'material'
   -- https://codeyarns.com/tech/2011-07-29-vim-chart-of-color-names.html#gsc.tab=0
   cmd([[
     hi Cursor guifg=none guibg=CornflowerBlue
     hi Cursorline guifg=none guibg=DodgerBlue4
     hi Visual guifg=none guibg=DodgerBlue4
     hi MatchParen guifg=none guibg=tomato
+    hi BufferInactive guibg=bg
+    hi BufferInactiveMod guifg=tomato guifg=white
+    hi BufferInactiveSign guibg=bg guifg=bg
     hi BufferCurrent guibg=DodgerBlue4
-    hi BufferCurrentSign guibg=DodgerBlue4
+    hi BufferCurrentMod guibg=tomato guifg=white
+    hi BufferCurrentSign guibg=bg guifg=bg
     hi BufferCurrentSignRight guibg=DodgerBlue4
   ]])
 

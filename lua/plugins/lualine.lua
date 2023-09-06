@@ -3,6 +3,9 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     require('lualine').setup {
+      options = {
+        theme = 'tokyonight'
+      },
       sections = {
         -- https://github.com/nvim-lualine/lualine.nvim#available-components
         lualine_a = { "os.date('%H:%M')", 'mode' },
