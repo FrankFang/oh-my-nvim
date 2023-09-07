@@ -10,6 +10,7 @@ else
   require 'core.prepare'
   require 'core.options'
   require 'core.plugins'
+  require 'core.keybinding'
 
   if g.neovide then
     opt.guifont = "JetBrainsMono Nerd Font:h16"
@@ -20,26 +21,27 @@ else
 
   -- custom
   opt.termguicolors = true
-  opt.background = 'dark'
   opt.number = false
-  cmd.colorscheme 'sonokai'
+  opt.background = 'light'
+  -- cmd.colorscheme 'catppuccin'
+  -- cmd.colorscheme 'sonokai'
   -- cmd.colorscheme 'tokyonight'
   -- cmd.colorscheme 'kanagawa'
-  -- cmd.colorscheme 'material'
+  cmd.colorscheme 'material-lighter'
   -- https://codeyarns.com/tech/2011-07-29-vim-chart-of-color-names.html#gsc.tab=0
-  cmd([[
-    hi Cursor guifg=none guibg=CornflowerBlue
-    hi Cursorline guifg=none guibg=DodgerBlue4
-    hi Visual guifg=none guibg=DodgerBlue4
-    hi MatchParen guifg=none guibg=tomato
-    hi BufferInactive guibg=bg
-    hi BufferInactiveMod guifg=tomato guifg=white
-    hi BufferInactiveSign guibg=bg guifg=bg
-    hi BufferCurrent guibg=DodgerBlue4
-    hi BufferCurrentMod guibg=tomato guifg=white
-    hi BufferCurrentSign guibg=bg guifg=bg
-    hi BufferCurrentSignRight guibg=DodgerBlue4
-  ]])
+  -- cmd([[
+  --   hi Cursor guifg=none guibg=CornflowerBlue
+  --   hi Cursorline guifg=none guibg=DodgerBlue4
+  --   hi Visual guifg=none guibg=DodgerBlue4
+  --   hi MatchParen guifg=none guibg=tomato
+  --   hi BufferInactive guibg=bg
+  --   hi BufferInactiveMod guifg=tomato guifg=white
+  --   hi BufferInactiveSign guibg=bg guifg=bg
+  --   hi BufferCurrent guibg=DodgerBlue4
+  --   hi BufferCurrentMod guibg=tomato guifg=white
+  --   hi BufferCurrentSign guibg=bg guifg=bg
+  --   hi BufferCurrentSignRight guibg=DodgerBlue4
+  -- ]])
 
   -- Ctrl-S to save all
   vim.api.nvim_set_keymap('i', '<c-s>', '<c-o><cmd>wa<cr>', { noremap = true, silent = true })

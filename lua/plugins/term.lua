@@ -89,13 +89,13 @@ return {
     }, { mode = 'n', noremap = true, slient = true })
 
     wk.register({
-      ['A-1'] = {
+      ['[A-1]'] = {
         "<c-o>" .. cmd_toggle_term, "Toggle Term"
       },
       ['<A-2>'] = {
         "<c-o>" .. cmd_toggle_lazygit, "Toggle Lazygit"
       },
-      ['D-1'] = {
+      ['<D-1>'] = {
         "<c-o>" .. cmd_toggle_term, "Toggle Term"
       },
       ['<D-2>'] = {
