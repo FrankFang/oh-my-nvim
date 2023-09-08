@@ -13,26 +13,13 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +14 lua/plugins/css_color.lua
-badd +10 lua/plugins/css_color_2.lua
-badd +12 lua/plugins/session.lua
-badd +34 init.lua
-badd +6 lua/plugins/indent-guides.lua
-badd +16 lua/plugins/term.lua
-badd +11 lua/plugins/barbar.lua
-badd +7 lua/plugins/which-key.lua
-badd +140 lua/plugins/tree.lua
-badd +9 lua/core/keybinding.lua
-badd +5 lua/plugins/comamnder.lua
-badd +21 lua/plugins/copilot.lua
-badd +22 lua/plugins/cursor_animation.lua
-badd +8 lua/plugins/yank.lua
-badd +60 lua/core/helper.lua
+badd +33 lua/core/keybinding.lua
+badd +45 lua/plugins/lsp-zero.lua
 argglobal
 %argdel
-edit init.lua
+edit lua/core/keybinding.lua
 argglobal
-balt lua/core/helper.lua
+balt lua/plugins/lsp-zero.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -43,12 +30,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 34 - ((17 * winheight(0) + 18) / 36)
+let s:l = 31 - ((16 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 34
-normal! 049|
+keepjumps 31
+normal! 07|
 lcd ~/.config/nvim
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

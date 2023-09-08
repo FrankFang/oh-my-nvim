@@ -53,24 +53,17 @@ return {
     end
 
 
-    lsp.on_attach(function(client, bufnr)
-      -- see :help lsp-zero-keybindings
-      -- to learn the available actions
-      lsp.default_keymaps({ buffer = bufnr })
-    end)
-    lsp.on_attach(function(client, bufnr)
-      lsp.default_keymaps({ buffer = bufnr })
-      local opts = { buffer = bufnr }
-
-      vim.keymap.set({ 'n', 'x' }, 'gq', function()
-        vim.lsp.buf.format({ async = false, timeout_ms = 3000 })
-      end, opts)
-    end)
+    -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/api-reference.md#default_keymapsopts
+    -- lsp.on_attach(function(client, bufnr)
+    --   lsp.default_keymaps({ buffer = bufnr })
+    -- end)
     -- https://www.reddit.com/r/neovim/comments/107g8lg/how_to_ignore_node_modules_when_using/j3mieqc/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
     lsp.on_attach(function(client, bufnr)
       local opts = { buffer = bufnr, remap = false }
       local bufopts = { noremap = true, silent = true, buffer = bufnr }
-      vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition { on_list = on_list } end, bufopts)
+      -- vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition { on_list = on_list } end, bufopts)
+      vim.keymap.set('n', 'gd', '<cmd>Lspsaga peek_definition<cr>', bufopts)
+      vim.keymap.set('n', 'gD', '<cmd>Lspsaga goto_definition<cr>', bufopts)
     end)
 
     -- (Optional) Configure lua language server for neovim
@@ -117,9 +110,9 @@ return {
     null_ls.setup({
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
-          vim.keymap.set("n", "<Leader>l", function()
-            vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-          end, { buffer = bufnr, desc = "[lsp] format" })
+          -- vim.keymap.set("n", "<Leader>l", function()
+          --   vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+          -- end, { buffer = bufnr, desc = "[lsp] format" })
 
           -- format on save
           vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })

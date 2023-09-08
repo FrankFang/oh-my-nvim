@@ -31,18 +31,16 @@ helper.normal_mode_map({
   g = {
     name = '+go',
     f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
+    F = { "<cmd>Lspsaga finder<cr>", "Find Usage" },
     -- j = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Quick Fix" },
     j = { "<cmd>Lspsaga code_action<cr>", "Quick Fix" },
-    p = { "<cmd>Lspsaga peek_definition<cr>", "Definition" },
-    --D = { "<cmd>Lspsaga goto_definition<cr>", "Go To Definition" },
     --i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "implementation" },
-    --n = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Jump Next" },
-    --N = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Jump Prev" },
-    ['*'] = { "gd[{V%::s/<C-R>///gc<left><left><left>", "Rename All" },
+    n = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Jump Next" },
+    N = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Jump Prev" },
   },
   K = {
     name = '+Kan',
-    K = { '<cmd>lua vim.lsp.buf.hover()<cr>', 'LSP info' },
+    K = { '<cmd>Lspsaga hover_doc<cr>', 'LSP info' },
   },
   ["<leader>"] = {
     b = {
