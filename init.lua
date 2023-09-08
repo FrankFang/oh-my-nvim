@@ -44,11 +44,6 @@ else
     hi BufferCurrentSignright guibg=bg
   ]])
 
-  -- Ctrl-S to save all
-  vim.api.nvim_set_keymap('i', '<c-s>', '<c-o><cmd>wa<cr>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<c-s>', '<cmd>wa<cr>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', 'c*', '*<c-o>cgn', { noremap = true, silent = true })
-
   -- format before saving
   vim.api.nvim_create_autocmd("BufWritePre", {
     desc = "Format before saving",
@@ -59,7 +54,7 @@ else
   })
 
   -- remember last edit position
-  vim.cmd [[
-    autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-  ]]
+  -- vim.cmd [[
+  --   autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+  -- ]]
 end

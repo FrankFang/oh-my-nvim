@@ -1,6 +1,5 @@
 return {
   "chrisgrieser/nvim-early-retirement",
-  config = true,
   event = "VeryLazy",
   config = function()
     require("early-retirement").setup {
@@ -19,7 +18,7 @@ return {
       -- by setting this to 4, no auto-closing will take place when you have 3
       -- or fewer open buffers. Note that this plugin never closes the currently
       -- active buffer, so a number < 2 will effectively disable this setting.
-      minimumBufferNum = 3,
+      minimumBufferNum = 5,
 
       -- will ignore buffers with unsaved changes. If false, the buffers will
       -- automatically be written and then closed.

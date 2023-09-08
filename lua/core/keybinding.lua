@@ -12,6 +12,7 @@ helper.insert_and_normal_mode_map {
   ["<A-Right>"] = { '<cmd>BufferMoveNext<cr>', 'Buffer Move' },
   ["<A-Left>"] = { '<cmd>BufferMovePrevious<cr>', 'Buffer Move' },
   ["<A-P>"] = { '<cmd>BufferPin<cr>', 'Buffer Pin' },
+  ["<c-s>"] = { '<cmd>wa<cr>', 'Save' }
 }
 
 helper.insert_mode_map({
@@ -56,6 +57,7 @@ helper.normal_mode_map({
       d = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
       h = { "<cmd>Telescope help_tags<cr>", "Help" },
       r = { "<cmd>Telescope registers<cr>", "Open Recent File" },
+      m = { "<cmd>Telescope marks<cr>", "Open Marks" },
       p = { "<cmd>echo expand('%:p')<cr>", "Path" },
     },
     r = {

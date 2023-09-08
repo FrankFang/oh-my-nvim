@@ -47,11 +47,9 @@ return {
       if #items > 1 then
         items = filter(items, filterReactDTS)
       end
-
       vim.fn.setqflist({}, ' ', { title = options.title, items = items, context = options.context })
       vim.api.nvim_command('cfirst') -- or maybe you want 'copen' instead of 'cfirst'
     end
-
 
     -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/api-reference.md#default_keymapsopts
     -- lsp.on_attach(function(client, bufnr)
@@ -62,8 +60,8 @@ return {
       local opts = { buffer = bufnr, remap = false }
       local bufopts = { noremap = true, silent = true, buffer = bufnr }
       -- vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition { on_list = on_list } end, bufopts)
-      vim.keymap.set('n', 'gd', '<cmd>Lspsaga peek_definition<cr>', bufopts)
-      vim.keymap.set('n', 'gD', '<cmd>Lspsaga goto_definition<cr>', bufopts)
+      vim.keymap.set('n', 'gd', '<cmd>Lspsaga goto_definition<cr>', bufopts)
+      vim.keymap.set('n', 'gD', '<cmd>Lspsaga peek_definition<cr>', bufopts)
     end)
 
     -- (Optional) Configure lua language server for neovim
@@ -89,10 +87,10 @@ return {
       },
       mapping = {
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-        ['<CR>'] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = false,
-        })
+        -- ['<CR>'] = cmp.mapping.confirm({
+        --   behavior = cmp.ConfirmBehavior.Replace,
+        --   select = false,
+        -- })
       }
     })
 
