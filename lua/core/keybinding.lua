@@ -5,6 +5,15 @@ vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
 vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
 vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 
+vim.cmd [[
+  nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+  nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+]]
+
+local cmd_toggle_term = "<Cmd>lua _term_toggle()<CR>"
+local cmd_toggle_lazygit = "<Cmd>lua _lazygit_toggle()<CR>"
+local cmd_toggle_tree = "<Cmd>NvimTreeToggle<CR>"
+local cmd_toggle_outline = "<Cmd>SymbolsOutline<CR>"
 
 helper.insert_and_normal_mode_map {
   ["<f5>"] = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
@@ -12,7 +21,15 @@ helper.insert_and_normal_mode_map {
   ["<A-Right>"] = { '<cmd>BufferMoveNext<cr>', 'Buffer Move' },
   ["<A-Left>"] = { '<cmd>BufferMovePrevious<cr>', 'Buffer Move' },
   ["<A-P>"] = { '<cmd>BufferPin<cr>', 'Buffer Pin' },
-  ["<c-s>"] = { '<cmd>wa<cr>', 'Save' }
+  ["<c-s>"] = { '<cmd>wa<cr>', 'Save' },
+  ['<A-1>'] = { cmd_toggle_term, "Toggle Term" },
+  ['<A-2>'] = { cmd_toggle_lazygit, "Toggle Lazygit" },
+  ['<A-3>'] = { cmd_toggle_tree, "Toggle Tree" },
+  ['<A-4>'] = { cmd_toggle_outline, "Toggle Outline" },
+  ['<D-1>'] = { cmd_toggle_term, "Toggle Term" },
+  ['<D-2>'] = { cmd_toggle_lazygit, "Toggle Lazygit" },
+  ['<D-3>'] = { cmd_toggle_tree, "Toggle Tree" },
+  ['<D-4>'] = { cmd_toggle_outline, "Toggle Outline" },
 }
 
 helper.insert_mode_map({
@@ -34,7 +51,7 @@ helper.normal_mode_map({
     f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
     F = { "<cmd>Lspsaga finder<cr>", "Find Usage" },
     -- j = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Quick Fix" },
-    j = { "<cmd>Lspsaga code_action<cr>", "Quick Fix" },
+    q = { "<cmd>Lspsaga code_action<cr>", "Quick Fix" },
     --i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "implementation" },
     n = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Jump Next" },
     N = { "<cmd>Lspsaga diagnostic_jump_prev<cr>", "Jump Prev" },
@@ -44,6 +61,10 @@ helper.normal_mode_map({
     K = { '<cmd>Lspsaga hover_doc<cr>', 'LSP info' },
   },
   ["<leader>"] = {
+    ['1'] = { cmd_toggle_term, "Toggle Term" },
+    ['2'] = { cmd_toggle_lazygit, "Toggle Lazygit" },
+    ['3'] = { cmd_toggle_tree, "Toggle Tree" },
+    ['4'] = { cmd_toggle_outline, "Toggle Outline" },
     b = {
       b = { "<cmd>BufferClose<cr>", "Close Current Buffer" },
       k = { "<cmd>BufferCloseAllButCurrentOrPinned<cr>", "Close The Other Buffers" },

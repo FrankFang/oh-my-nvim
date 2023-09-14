@@ -5,7 +5,11 @@ return {
     require('mini.sessions').setup {
       autoread = true,
     }
-    require('mini.animate').setup()
+    require('mini.animate').setup {
+      cursor = {
+        enable = false,
+      }
+    }
 
     require('mini.indentscope').setup {
       symbol = '▏',

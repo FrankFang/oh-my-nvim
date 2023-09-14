@@ -23,6 +23,7 @@ else
   opt.termguicolors = true
   opt.number = false
   opt.background = 'light'
+  opt.cmdheight = 2
   -- cmd.colorscheme 'catppuccin'
   -- cmd.colorscheme 'sonokai'
   -- cmd.colorscheme 'tokyonight'
@@ -49,7 +50,7 @@ else
     desc = "Format before saving",
     group = vim.api.nvim_create_augroup("Custom", { clear = true }),
     callback = function()
-      vim.lsp.buf.format({ async = false, timeout_ms = 3000 })
+      -- vim.lsp.buf.format({ async = false, timeout_ms = 3000 })
     end,
   })
 

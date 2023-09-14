@@ -1,4 +1,4 @@
-return { 
+local m = { 
   'glepnir/dashboard-nvim',
   event = 'VimEnter',
   config = function()
@@ -8,3 +8,5 @@ return {
   end,
   dependencies = { {'nvim-tree/nvim-web-devicons'} }
 }
+
+return {}

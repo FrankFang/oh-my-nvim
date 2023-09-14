@@ -10,12 +10,6 @@ return {
       auto_hide = true,
       sidebar_filetypes = {
         NvimTree = true,
-      },
-      icons = {
-        filetype = {
-          custom_colors = true,
-          enabled = false
-        }
       }
     }
   end,

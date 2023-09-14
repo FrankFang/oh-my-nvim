@@ -87,10 +87,10 @@ return {
       },
       mapping = {
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-        -- ['<CR>'] = cmp.mapping.confirm({
-        --   behavior = cmp.ConfirmBehavior.Replace,
-        --   select = false,
-        -- })
+        ['<CR>'] = cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = false,
+        })
       }
     })
 
