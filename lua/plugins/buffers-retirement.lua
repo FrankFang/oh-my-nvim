@@ -1,4 +1,4 @@
-return {
+local m = {
   "chrisgrieser/nvim-early-retirement",
   event = "VeryLazy",
   config = function()
@@ -40,3 +40,4 @@ return {
     }
   end
 }
+return {}

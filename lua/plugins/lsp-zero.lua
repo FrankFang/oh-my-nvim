@@ -1,4 +1,4 @@
-return {
+local m =  {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v2.x',
   dependencies = {
@@ -155,3 +155,7 @@ return {
     })
   end
 }
+
+return m
+
+

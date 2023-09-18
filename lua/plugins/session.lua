@@ -14,6 +14,6 @@ return {
     require('mini.indentscope').setup {
       symbol = '▏',
     }
-    require('mini.jump2d').setup()
+    -- require('mini.jump2d').setup()
   end
 }

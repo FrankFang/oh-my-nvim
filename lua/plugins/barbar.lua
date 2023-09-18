@@ -7,7 +7,7 @@ return {
   init = function()
     vim.g.barbar_auto_setup = false
     require 'barbar'.setup {
-      auto_hide = true,
+      auto_hide = false,
       sidebar_filetypes = {
         NvimTree = true,
       }
