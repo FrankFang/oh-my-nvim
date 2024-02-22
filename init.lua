@@ -13,8 +13,8 @@ else
   require 'core.keybinding'
 
   if g.neovide then
-    opt.guifont = "JetBrainsMono Nerd Font:h16"
-    opt.linespace = 8
+    opt.guifont = "JetBrainsMono Nerd Font:h13"
+    opt.linespace = 4
     g.neovide_cursor_vfx_mode = "railgun"
     require 'core.neovide'
   end

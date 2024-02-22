@@ -42,7 +42,7 @@ return {
         "nvim-cmp",
         -- "nvim-navic",
         "nvim-tree",
-        "nvim-web-devicons",
+        -- "nvim-web-devicons",
         -- "sneak",
         "telescope",
         "trouble",

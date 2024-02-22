@@ -1,4 +1,4 @@
-local m =  {
+local m = {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v2.x',
   dependencies = {
@@ -96,7 +96,11 @@ local m =  {
 
     -- saga
     local saga = require('lspsaga')
-    saga.setup()
+    saga.setup({
+      symbol_in_winbar = {
+        enabled = false,
+      }
+    })
 
     -- null-ls
     local null_ls = require("null-ls")
@@ -157,5 +161,3 @@ local m =  {
 }
 
 return m
-
-

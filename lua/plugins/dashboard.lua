@@ -6,7 +6,9 @@ local m = {
       change_to_vcs_root = true
     }
   end,
-  dependencies = { {'nvim-tree/nvim-web-devicons'} }
+  dependencies = { 
+    -- {'nvim-tree/nvim-web-devicons'} ,
+  }
 }
 
 return {}

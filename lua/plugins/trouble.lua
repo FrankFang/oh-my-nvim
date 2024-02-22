@@ -9,7 +9,9 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 
 return {
   "folke/trouble.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+  dependencies = { 
+    -- "nvim-tree/nvim-web-devicons" 
+  },
   config = function()
     local trouble = require('trouble')
     trouble.setup {}
