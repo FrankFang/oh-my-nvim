@@ -76,11 +76,8 @@ opt.textwidth = 120
 --opt.colorcolumn = '120'
 
 -- mouse
-opt.mouse = 'a'
--- cmd([[
---   autocmd BufEnter zsh set mouse=a
---   autocmd BufLeave zsh set mouse=a
--- ]])
+opt.ttyfast = true
+opt.mouse = ''
 
 -- search
 opt.incsearch = false

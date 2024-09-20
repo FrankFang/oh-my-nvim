@@ -1,3 +1,31 @@
+local function filter(arr, fn)
+  if type(arr) ~= "table" then
+    return arr
+  end
+
+  local filtered = {}
+  for k, v in pairs(arr) do
+    if fn(v, k, arr) then
+      table.insert(filtered, v)
+    end
+  end
+
+  return filtered
+end
+
+local function filterReactDTS(value)
+  return string.match(value.filename, 'react/index.d.ts') == nil
+end
+
+local function on_list(options)
+  local items = options.items
+  if #items > 1 then
+    items = filter(items, filterReactDTS)
+  end
+  vim.fn.setqflist({}, ' ', { title = options.title, items = items, context = options.context })
+  vim.api.nvim_command('cfirst') -- or maybe you want 'copen' instead of 'cfirst'
+end
+
 local m = {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v2.x',
@@ -6,7 +34,8 @@ local m = {
     { 'neovim/nvim-lspconfig' },             -- Required
     { 'williamboman/mason.nvim' },           -- Optional
     { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-    { 'jose-elias-alvarez/null-ls.nvim' },
+    { 'nvimtools/none-ls.nvim' },
+    { 'davidmh/cspell.nvim' },
     { 'MunifTanjim/prettier.nvim' },
     { "nvimdev/lspsaga.nvim" }, -- Better LSP UI
     -- Autocompletion
@@ -16,46 +45,22 @@ local m = {
   },
   config = function()
     local lsp = require('lsp-zero').preset({})
+    local lspconfig = require('lspconfig')
     local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
     lsp.preset('recommended')
     lsp.ensure_installed({
-      'tsserver',
+      -- 'tsserver',
       'eslint',
+      'volar',
     })
 
-    local function filter(arr, fn)
-      if type(arr) ~= "table" then
-        return arr
-      end
-
-      local filtered = {}
-      for k, v in pairs(arr) do
-        if fn(v, k, arr) then
-          table.insert(filtered, v)
-        end
-      end
-
-      return filtered
-    end
-
-    local function filterReactDTS(value)
-      return string.match(value.filename, 'react/index.d.ts') == nil
-    end
-
-    local function on_list(options)
-      local items = options.items
-      if #items > 1 then
-        items = filter(items, filterReactDTS)
-      end
-      vim.fn.setqflist({}, ' ', { title = options.title, items = items, context = options.context })
-      vim.api.nvim_command('cfirst') -- or maybe you want 'copen' instead of 'cfirst'
-    end
 
     -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/api-reference.md#default_keymapsopts
     -- lsp.on_attach(function(client, bufnr)
     --   lsp.default_keymaps({ buffer = bufnr })
     -- end)
     -- https://www.reddit.com/r/neovim/comments/107g8lg/how_to_ignore_node_modules_when_using/j3mieqc/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+
     lsp.on_attach(function(client, bufnr)
       local opts = { buffer = bufnr, remap = false }
       local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -65,8 +70,6 @@ local m = {
     end)
 
     -- (Optional) Configure lua language server for neovim
-    require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-    lsp.setup()
 
     -- Make sure you setup `cmp` after lsp-zero
 
@@ -102,38 +105,31 @@ local m = {
       }
     })
 
+    -- maason
+
+    require('mason-lspconfig').setup_handlers({
+      function(server_name)
+        local server_config = {}
+        if server_name == 'volar' then 
+          server_config.filetypes = { 'vue', 'typescript', 'javascript' }
+        elseif server_name == 'lua_ls' then 
+          server_config = lsp.nvim_lua_ls()
+        end
+        lspconfig[server_name].setup(server_config)
+      end,
+    })
+
     -- null-ls
     local null_ls = require("null-ls")
-
-    local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
-    local event = "BufWritePre" -- or "BufWritePost"
-    local async = event == "BufWritePost"
+    local cspell = require('cspell')
 
     null_ls.setup({
-      on_attach = function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
-          -- vim.keymap.set("n", "<Leader>l", function()
-          --   vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-          -- end, { buffer = bufnr, desc = "[lsp] format" })
-
-          -- format on save
-          vim.api.nvim_clear_autocmds({ buffer = bufnr, group = group })
-          vim.api.nvim_create_autocmd(event, {
-            buffer = bufnr,
-            group = group,
-            callback = function()
-              vim.lsp.buf.format({ bufnr = bufnr, async = async })
-            end,
-            desc = "[lsp] format on save",
-          })
-        end
-
-        if client.supports_method("textDocument/rangeFormatting") then
-          vim.keymap.set("x", "<Leader>l", function()
-            vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
-          end, { buffer = bufnr, desc = "[lsp] format" })
-        end
-      end,
+      sources = {
+        null_ls.builtins.diagnostics.eslint,
+        -- null_ls.builtins.completion.spell,
+        cspell.diagnostics,
+        cspell.code_actions,
+      },
     })
 
     -- prettier
@@ -157,6 +153,8 @@ local m = {
         },
       },
     })
+
+    lsp.setup()
   end
 }
 

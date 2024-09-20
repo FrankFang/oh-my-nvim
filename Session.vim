@@ -13,21 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +17 lua/plugins/session.lua
-badd +12 lua/plugins/barbar.lua
-badd +83 lua/plugins/lsp-zero.lua
-badd +63 lua/core/keybinding.lua
-badd +3 lua/plugins/frecency.lua
-badd +8 lua/plugins/snippet-engine.lua
-badd +1 lua/plugins/snippets.lua
-badd +17 init.lua
-badd +1 lua/fn.lua
-badd +37 lua/core/neovide.lua
+badd +1 init.lua
+badd +6 lua/core/options.lua
+badd +26 lua/core/keybinding.lua
+badd +25 lua/plugins/copilot.lua
+badd +147 lua/plugins/lsp-zero.lua
 argglobal
 %argdel
+$argadd init.lua
+tabnew +setlocal\ bufhidden=wipe
+tabrewind
 edit init.lua
 argglobal
-balt lua/core/neovide.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -38,14 +35,33 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 56 - ((36 * winheight(0) + 21) / 42)
+let s:l = 6 - ((5 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 56
+keepjumps 6
 normal! 0
-lcd ~/.config/nvim
-tabnext 1
+tabnext
+edit lua/plugins/lsp-zero.lua
+argglobal
+balt init.lua
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 146 - ((29 * winheight(0) + 22) / 45)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 146
+normal! 07|
+tabnext 2
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
@@ -58,7 +74,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

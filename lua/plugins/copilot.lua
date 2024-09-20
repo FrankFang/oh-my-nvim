@@ -22,6 +22,9 @@ return {
         auto_trigger = true,
         debounce = 75,
       },
+      filetypes = {
+        ["*"] = true,
+      },
       copilot_node_command = node_path, -- Node.js version must be > 16.x
       server_opts_overrides = {},
     })

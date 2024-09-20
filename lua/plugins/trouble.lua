@@ -14,7 +14,9 @@ return {
   },
   config = function()
     local trouble = require('trouble')
-    trouble.setup {}
+    trouble.setup {
+      icons = false,
+    }
     local wk = require("which-key")
     wk.register({
       ["<leader>x"] = { name = "+trouble" },

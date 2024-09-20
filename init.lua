@@ -6,6 +6,7 @@ if g.vscode then
     source $HOME/.config/nvim/vscode/settings.vim
   ]]
 else
+
   -- ordinary Neovim
   require 'core.prepare'
   require 'core.options'
